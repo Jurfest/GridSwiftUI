@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let animals = ["🐶", "🐸", "🐷", "🦉", "🦋", "🐞", "🦑", "🐬", "🐘", "🐿", "🦦"]
     @State private var sliderValue: CGFloat = 1
     
     var body: some View {
@@ -18,22 +17,28 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 
-                Slider(value: $sliderValue, in: 1...8, step: 1)
-                Text(String(format: "%.0f", self.sliderValue))
-                .font(.system(size: 20))
-                .fontWeight(.bold)
-                .padding()
-                .background(Color.purple)
-                .foregroundColor(Color.white)
-                .clipShape(Circle())
-                
-                List(self.animals.chunks(size: Int(self.sliderValue)), id: \.self) { chunk in
-                    ForEach(chunk, id: \.self) { animal in
-                        Text(animal).font(.system(size: 300/self.sliderValue))
+                List {
+                    
+                    // rows
+                    ForEach(0..<5) { _ in
+                        
+                        HStack {
+                            
+                            // columns
+                            ForEach(0..<2) { _ in
+                                
+                                Image("football-ball").resizable().scaledToFit()
+                                
+                            }
+                            
+                            
+                        }
+                        
+                        
                     }
                 }
             }
-        .navigationBarTitle("Animals")
+        .navigationBarTitle("Futebol")
         }
     }
 }
